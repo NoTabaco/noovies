@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
-import { ActivityIndicator, Dimensions, View } from "react-native";
+import { ActivityIndicator, Dimensions } from "react-native";
 import Slide from "../../components/Movies/Slide";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("screen");
@@ -29,6 +29,7 @@ export default ({ loading, nowPlaying }) => (
               key={movie.id}
               id={movie.id}
               title={movie.original_title}
+              poster={movie.poster_path}
               backgroundImage={movie.backdrop_path}
               votes={movie.vote_average}
               overview={movie.overview}
