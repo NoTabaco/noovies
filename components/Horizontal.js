@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import Poster from "./Poster";
@@ -7,31 +6,36 @@ import { apiImage } from "../api";
 import Votes from "./Votes";
 
 const Container = styled.View`
-  align-items: center;
-  margin-right: 15px;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px 15px;
+  margin-bottom: 30px;
 `;
+
+const Data = styled.View``;
 
 const Title = styled.Text`
   color: white;
   font-weight: 500;
-  margin: 7px 0px 3px 0px;
 `;
 
-const Vertical = ({ id, poster, title, votes }) => (
+const Horizontal = ({ id, title, votes, poster, overview }) => (
   <Container>
-    <TouchableOpacity>
-      <Poster url={apiImage(poster)} />
-      <Title>{title.length >= 10 ? `${title.slice(0, 10)}...` : title}</Title>
+    <Poster url={apiImage(poster)} />
+    <Data>
+      <Title>{title}</Title>
       <Votes votes={votes} />
-    </TouchableOpacity>
+      {}
+    </Data>
   </Container>
 );
 
-Vertical.propTypes = {
+Horizontal.propTypes = {
   id: PropTypes.number.isRequired,
-  poster: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
 };
 
-export default Vertical;
+export default Horizontal;
