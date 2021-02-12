@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import { apiImage } from "../../api";
 import Poster from "../Poster";
+import Votes from "../Votes";
 
 const Container = styled.View`
   width: 100%;
@@ -36,10 +37,8 @@ const Title = styled.Text`
   margin-bottom: 5px;
 `;
 
-const Votes = styled.Text`
-  color: rgb(220, 220, 220);
+const VotesContainer = styled.View`
   margin-bottom: 5px;
-  font-size: 12px;
 `;
 
 const Overview = styled.Text`
@@ -66,9 +65,11 @@ const Slide = ({ id, title, poster, backgroundImage, votes, overview }) => (
       <Poster url={apiImage(poster)} />
       <Data>
         <Title>{title}</Title>
-        <Votes>🌟 {votes} / 10</Votes>
+        <VotesContainer>
+          <Votes votes={votes} />
+        </VotesContainer>
         <Overview>
-          {overview.length >= 70 ? overview.slice(0, 70) : overview}...
+          {overview.length >= 70 ? `${overview.slice(0, 70)}...` : overview}
         </Overview>
         <TouchableOpacity>
           <Button>
@@ -83,6 +84,7 @@ const Slide = ({ id, title, poster, backgroundImage, votes, overview }) => (
 Slide.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
   backgroundImage: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   overview: PropTypes.string.isRequired,
