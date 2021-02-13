@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import { apiImage } from "../../api";
+import { trimText } from "../../utils";
 import Poster from "../Poster";
 import Votes from "../Votes";
 
@@ -62,15 +63,13 @@ const Slide = ({ id, title, poster, backgroundImage, votes, overview }) => (
   <Container>
     <BG source={{ uri: apiImage(backgroundImage) }} />
     <Content>
-      <Poster url={apiImage(poster)} />
+      <Poster url={poster} />
       <Data>
         <Title>{title}</Title>
         <VotesContainer>
           <Votes votes={votes} />
         </VotesContainer>
-        <Overview>
-          {overview.length >= 70 ? `${overview.slice(0, 70)}...` : overview}
-        </Overview>
+        <Overview>{trimText(overview, 70)}</Overview>
         <TouchableOpacity>
           <Button>
             <ButtonText>View details</ButtonText>
