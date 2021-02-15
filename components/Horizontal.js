@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import { formatDate, trimText } from "../utils";
 import Poster from "./Poster";
+import Votes from "./Votes";
 
 const Container = styled.View`
   padding: 0px 15px;
@@ -32,7 +33,7 @@ const Overview = styled.Text`
   margin-top: 5px;
 `;
 
-const Horizontal = ({ id, title, releaseDate, poster, overview }) => (
+const Horizontal = ({ id, title, releaseDate, votes, poster, overview }) => (
   <Container>
     <TouchableOpacity
       style={{ flexDirection: "row", alignItems: "flex-start" }}
@@ -42,7 +43,9 @@ const Horizontal = ({ id, title, releaseDate, poster, overview }) => (
         <Title>{trimText(title, 28)}</Title>
         {releaseDate ? (
           <ReleaseDate>{formatDate(releaseDate)}</ReleaseDate>
-        ) : null}
+        ) : (
+          <Votes votes={votes} />
+        )}
         <Overview>{trimText(overview, 100)}</Overview>
       </Data>
     </TouchableOpacity>
@@ -53,6 +56,7 @@ Horizontal.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string,
+  votes: PropTypes.number,
   poster: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
 };

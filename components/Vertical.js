@@ -2,8 +2,8 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import { trimText } from "../utils";
 import Poster from "./Poster";
+import { trimText } from "../utils";
 import Votes from "./Votes";
 
 const Container = styled.View`

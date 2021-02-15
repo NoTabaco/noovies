@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
-import { Dimensions, ScrollView } from "react-native";
+import { Dimensions } from "react-native";
 import ScrollContainer from "../../components/ScrollContainer";
 import Slide from "../../components/Movies/Slide";
-import Title from "../../components/Title";
 import Vertical from "../../components/Vertical";
 import Horizontal from "../../components/Horizontal";
+import HorizontalSlider from "../../components/HorizontalSlider";
+import List from "../../components/List";
 
 const { height: HEIGHT } = Dimensions.get("window");
 
@@ -17,10 +18,6 @@ const SliderContainer = styled.View`
 `;
 
 const Container = styled.View``;
-
-const UpcomingContainer = styled.View`
-  margin-top: 15px;
-`;
 
 export default ({ loading, nowPlaying, popular, upcoming }) => (
   <ScrollContainer loading={loading}>
@@ -40,13 +37,7 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
       </Swiper>
     </SliderContainer>
     <Container>
-      <Title title={"Popular Movies"} />
-      <ScrollView
-        style={{ marginTop: 15, marginBottom: 40 }}
-        contentContainerStyle={{ paddingLeft: 15 }}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
+      <HorizontalSlider title={"Popular Movies"}>
         {popular.map((movie) => (
           <Vertical
             key={movie.id}
@@ -56,9 +47,8 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
             votes={movie.vote_average}
           />
         ))}
-      </ScrollView>
-      <Title title={"Coming Soon"} />
-      <UpcomingContainer>
+      </HorizontalSlider>
+      <List title={"Coming Soon"}>
         {upcoming.map((movie) => (
           <Horizontal
             key={movie.id}
@@ -69,7 +59,7 @@ export default ({ loading, nowPlaying, popular, upcoming }) => (
             overview={movie.overview}
           />
         ))}
-      </UpcomingContainer>
+      </List>
     </Container>
   </ScrollContainer>
 );
