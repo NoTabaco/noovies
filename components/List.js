@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import PropTypes from "prop-types";
 import Title from "./Title";
 
 const Container = styled.View`
@@ -12,5 +13,10 @@ const List = ({ title, children }) => (
     <Container>{children}</Container>
   </>
 );
+
+List.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default List;

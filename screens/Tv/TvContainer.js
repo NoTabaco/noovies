@@ -5,30 +5,30 @@ import TvPresenter from "./TvPresenter";
 export default () => {
   const [shows, setShows] = useState({
     loading: true,
-    today: [],
+    popular: [],
     thisWeek: [],
     topRated: [],
-    popular: [],
-    todayError: null,
+    today: [],
+    popularError: null,
     thisWeekError: null,
     topRatedError: null,
-    popularError: null,
+    todayError: null,
   });
   const getData = async () => {
-    const [today, todayError] = await tvApi.today();
-    const [topRated, topRatedError] = await tvApi.topRated();
     const [popular, popularError] = await tvApi.popular();
     const [thisWeek, thisWeekError] = await tvApi.thisWeek();
+    const [topRated, topRatedError] = await tvApi.topRated();
+    const [today, todayError] = await tvApi.today();
     setShows({
       loading: false,
-      today,
+      popular,
       thisWeek,
       topRated,
-      popular,
-      todayError,
+      today,
+      popularError,
       thisWeekError,
       topRatedError,
-      popularError,
+      todayError,
     });
   };
   useEffect(() => {

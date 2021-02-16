@@ -32,7 +32,6 @@ export default ({ loading, popular, topRated, today, thisWeek }) => (
             poster={show.poster_path}
             title={show.original_name}
             votes={show.vote_average}
-            firstAirDate={show.id}
           />
         ))}
       </HorizontalSlider>
