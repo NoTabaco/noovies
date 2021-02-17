@@ -101,8 +101,8 @@ const Slide = ({
 Slide.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string.isRequired,
+  poster: PropTypes.string,
+  backgroundImage: PropTypes.string,
   votes: PropTypes.number.isRequired,
   overview: PropTypes.string,
   firstAirDate: PropTypes.string,
