@@ -6,5 +6,11 @@ export default () => {
   const onChange = (text) => setKeyword(text);
   const onSubmit = () => console.log("search for", keyword);
 
-  <SearchPresenter onChange={onChange} onSubmit={onSubmit} keyword={keyword} />;
+  return (
+    <SearchPresenter
+      onChange={onChange}
+      onSubmit={onSubmit}
+      keyword={keyword}
+    />
+  );
 };
