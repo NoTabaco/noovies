@@ -13,7 +13,7 @@ const { height: HEIGHT } = Dimensions.get("window");
 
 const SliderContainer = styled.View`
   width: 100%;
-  height: ${HEIGHT / 4}px;
+  height: ${HEIGHT / 3}px;
   margin-bottom: 40px;
 `;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import { apiImage } from "../api";
@@ -73,30 +74,43 @@ const Slide = ({
   votes,
   overview,
   firstAirDate,
-}) => (
-  <Container>
-    <BG source={{ uri: apiImage(backgroundImage) }} />
-    <Content>
-      <Poster url={poster} />
-      <Data>
-        <Title>{title}</Title>
-        <VotesContainer>
-          <Votes votes={votes} />
-        </VotesContainer>
-        {overview !== "" ? (
-          <Overview>{trimText(overview, 70)}</Overview>
-        ) : (
-          <FirstAirDate>{formatDate(firstAirDate)}</FirstAirDate>
-        )}
-        <TouchableOpacity>
-          <Button>
-            <ButtonText>View details</ButtonText>
-          </Button>
-        </TouchableOpacity>
-      </Data>
-    </Content>
-  </Container>
-);
+}) => {
+  const navigation = useNavigation();
+  const goToDetail = () =>
+    navigation.navigate("Detail", {
+      id,
+      title,
+      poster,
+      backgroundImage,
+      votes,
+      overview,
+      firstAirDate,
+    });
+  return (
+    <Container>
+      <BG source={{ uri: apiImage(backgroundImage) }} />
+      <Content>
+        <Poster url={poster} />
+        <Data>
+          <Title>{title}</Title>
+          <VotesContainer>
+            <Votes votes={votes} />
+          </VotesContainer>
+          {overview !== "" ? (
+            <Overview>{trimText(overview, 70)}</Overview>
+          ) : (
+            <FirstAirDate>{formatDate(firstAirDate)}</FirstAirDate>
+          )}
+          <TouchableOpacity onPress={goToDetail}>
+            <Button>
+              <ButtonText>View details</ButtonText>
+            </Button>
+          </TouchableOpacity>
+        </Data>
+      </Content>
+    </Container>
+  );
+};
 
 Slide.propTypes = {
   id: PropTypes.number.isRequired,
