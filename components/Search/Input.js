@@ -7,6 +7,7 @@ const TextInput = styled.TextInput`
   margin: 0px 15px;
   padding: 5px 15px;
   border-radius: 15px;
+  margin-bottom: 50px;
 `;
 
 const Input = ({ placeholder, value, onChange, onSubmit }) => (

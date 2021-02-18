@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchPresenter from "./SearchPresenter";
 import { movieApi, tvApi } from "../../api";
 
@@ -24,6 +24,9 @@ export default () => {
       showsError,
     });
   };
+  useEffect(() => {
+    search();
+  }, []);
   return (
     <SearchPresenter
       {...results}
