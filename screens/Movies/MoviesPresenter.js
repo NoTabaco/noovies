@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
 import { Dimensions } from "react-native";
 import ScrollContainer from "../../components/ScrollContainer";
-import Slide from "../../components/Movies/Slide";
+import Slide from "../../components/Slide";
 import Vertical from "../../components/Vertical";
 import Horizontal from "../../components/Horizontal";
 import HorizontalSlider from "../../components/HorizontalSlider";

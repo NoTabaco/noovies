@@ -2,10 +2,10 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import { apiImage } from "../../api";
-import { formatDate, trimText } from "../../utils";
-import Poster from "../Poster";
-import Votes from "../Votes";
+import { apiImage } from "../api";
+import { trimText, formatDate } from "../utils";
+import Poster from "./Poster";
+import Votes from "./Votes";
 
 const Container = styled.View`
   width: 100%;
@@ -38,17 +38,17 @@ const Title = styled.Text`
   margin-bottom: 5px;
 `;
 
-const VotesContainer = styled.View`
-  margin-bottom: 5px;
-`;
-
-const Overview = styled.Text`
+const FirstAirDate = styled.Text`
   color: rgb(220, 220, 220);
   font-size: 14px;
   font-weight: 500;
 `;
 
-const FirstAirDate = styled.Text`
+const VotesContainer = styled.View`
+  margin-bottom: 5px;
+`;
+
+const Overview = styled.Text`
   color: rgb(220, 220, 220);
   font-size: 14px;
   font-weight: 500;

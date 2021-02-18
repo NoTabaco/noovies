@@ -9,9 +9,12 @@ const Image = styled.Image`
   border-radius: 4px;
 `;
 
-const Poster = ({ url }) => (
-  <Image style={{ resizeMode: "stretch" }} source={{ uri: apiImage(url) }} />
-);
+const Poster = ({ url }) =>
+  url ? (
+    <Image source={{ uri: apiImage(url) }} />
+  ) : (
+    <Image style={{ resizeMode: "stretch" }} source={{ uri: apiImage(url) }} />
+  );
 
 Poster.propTypes = {
   url: PropTypes.string,
