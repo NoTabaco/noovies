@@ -10,7 +10,7 @@ const Image = styled.Image`
 `;
 
 const Poster = ({ url }) =>
-  url !== null ? (
+  url ? (
     <Image source={{ uri: apiImage(url) }} />
   ) : (
     <Image style={{ resizeMode: "stretch" }} source={{ uri: apiImage(url) }} />

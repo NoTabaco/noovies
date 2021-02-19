@@ -98,7 +98,7 @@ const Slide = ({
           <VotesContainer>
             <Votes votes={votes} />
           </VotesContainer>
-          {overview !== "" ? (
+          {overview ? (
             <Overview>{trimText(overview, 70)}</Overview>
           ) : (
             <FirstAirDate>{formatDate(firstAirDate)}</FirstAirDate>

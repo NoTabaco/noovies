@@ -34,7 +34,7 @@ const Vertical = ({ isTv = false, id, poster, title, votes }) => {
       <TouchableOpacity onPress={goToDetail}>
         <Poster url={poster} />
         <Title>{trimText(title, 10)}</Title>
-        {votes > 0 && <Votes votes={votes} />}
+        {votes ? <Votes votes={votes} /> : null}
       </TouchableOpacity>
     </Container>
   );

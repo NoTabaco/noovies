@@ -66,9 +66,9 @@ const Horizontal = ({
           <Title>{trimText(title, 28)}</Title>
           {!isTv ? (
             <ReleaseDate>{formatDate(releaseDate)}</ReleaseDate>
-          ) : (
-            votes > 0 && <Votes votes={votes} />
-          )}
+          ) : votes ? (
+            <Votes votes={votes} />
+          ) : null}
           <Overview>{trimText(overview, 100)}</Overview>
         </Data>
       </TouchableOpacity>

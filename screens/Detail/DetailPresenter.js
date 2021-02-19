@@ -58,28 +58,31 @@ const DataValue = styled.Text`
 `;
 
 export default ({ result, loading }) => (
-  <ScrollContainer loading={false}>
+  <ScrollContainer
+    loading={false}
+    contentContainerStyle={{ paddingBottom: 80 }}
+  >
     <Header>
       <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
       <Container>
         <Poster url={result.poster} />
         <Info>
           <Title>{result.title}</Title>
-          {result.votes > 0 && <Votes votes={result.votes} />}
+          {result.votes ? <Votes votes={result.votes} /> : null}
         </Info>
       </Container>
     </Header>
     <Data>
-      {result.overview !== "" && (
+      {result.overview ? (
         <>
           <DataName>Overview</DataName>
           <DataValue>{result.overview}</DataValue>
         </>
-      )}
-      {loading && (
+      ) : null}
+      {loading ? (
         <ActivityIndicator style={{ marginTop: 30 }} color={"white"} />
-      )}
-      {result.spoken_languages && (
+      ) : null}
+      {result.spoken_languages ? (
         <>
           <DataName>Language(s)</DataName>
           <DataValue>
@@ -90,13 +93,49 @@ export default ({ result, loading }) => (
             )}
           </DataValue>
         </>
-      )}
-      {result.release_date && (
+      ) : null}
+      {result.release_date ? (
         <>
           <DataName>Release Date</DataName>
           <DataValue>{formatDate(result.release_date)}</DataValue>
         </>
-      )}
+      ) : null}
+      {result.status ? (
+        <>
+          <DataName>Status</DataName>
+          <DataValue>{result.status}</DataValue>
+        </>
+      ) : null}
+      {result.runtime ? (
+        <>
+          <DataName>Runtime</DataName>
+          <DataValue>{result.runtime} minutes</DataValue>
+        </>
+      ) : null}
+      {result.first_air_date ? (
+        <>
+          <DataName>First Air Date</DataName>
+          <DataValue>{formatDate(result.first_air_date)}</DataValue>
+        </>
+      ) : null}
+      {result.genres ? (
+        <>
+          <DataName>Genre(s)</DataName>
+          <DataValue>
+            {result.genres.map((g, index) =>
+              index !== result.genres.length - 1 ? `${g.name} / ` : g.name
+            )}
+          </DataValue>
+        </>
+      ) : null}
+      {result.number_of_seasons || result.number_of_episodes ? (
+        <>
+          <DataName>Season(s) / Episode(s)</DataName>
+          <DataValue>
+            {result.number_of_seasons} / {result.number_of_episodes}
+          </DataValue>
+        </>
+      ) : null}
     </Data>
   </ScrollContainer>
 );
