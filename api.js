@@ -34,7 +34,7 @@ export const movieApi = {
       query,
       include_adult: true,
     }),
-  movie: (id) => getAnything(`/movie/${id}`),
+  movie: (id) => getAnything(`/movie/${id}`, { append_to_response: "videos" }),
   discover: () => getAnything("/discover/movie"),
 };
 
@@ -44,7 +44,7 @@ export const tvApi = {
   topRated: () => getAnything("/tv/top_rated"),
   popular: () => getAnything("/tv/popular"),
   search: (query) => getAnything("/search/tv", { query, include_adult: true }),
-  show: (id) => getAnything(`/tv/${id}`),
+  show: (id) => getAnything(`/tv/${id}`, { append_to_response: "videos" }),
 };
 
 export const apiImage = (

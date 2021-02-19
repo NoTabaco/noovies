@@ -1,10 +1,11 @@
 import React from "react";
-import { Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import ScrollContainer from "../../components/ScrollContainer";
 import Poster from "../../components/Poster";
 import Votes from "../../components/Votes";
 import { apiImage } from "../../api";
+import { formatDate } from "../../utils";
 
 const BG = styled.Image`
   width: 100%;
@@ -38,15 +39,16 @@ const Title = styled.Text`
 `;
 
 const Data = styled.View`
-  margin-top: 70px;
+  margin-top: 40px;
   padding: 0px 30px;
 `;
 
 const DataName = styled.Text`
+  margin-top: 20px;
   color: white;
   opacity: 0.8;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 `;
 
 const DataValue = styled.Text`
@@ -55,23 +57,44 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-export default ({ backgroundImage, title, votes, overview, poster }) => (
+export default ({ result, loading }) => (
   <ScrollContainer loading={false}>
     <Header>
-      <BG source={{ uri: apiImage(backgroundImage, "-") }} />
+      <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
       <Container>
-        <Poster url={poster} />
+        <Poster url={result.poster} />
         <Info>
-          <Title>{title}</Title>
-          {votes > 0 && <Votes votes={votes} />}
+          <Title>{result.title}</Title>
+          {result.votes > 0 && <Votes votes={result.votes} />}
         </Info>
       </Container>
     </Header>
     <Data>
-      {overview !== "" && (
+      {result.overview !== "" && (
         <>
           <DataName>Overview</DataName>
-          <DataValue>{overview}</DataValue>
+          <DataValue>{result.overview}</DataValue>
+        </>
+      )}
+      {loading && (
+        <ActivityIndicator style={{ marginTop: 30 }} color={"white"} />
+      )}
+      {result.spoken_languages && (
+        <>
+          <DataName>Language(s)</DataName>
+          <DataValue>
+            {result.spoken_languages.map((l, index) =>
+              index !== result.spoken_languages.length - 1
+                ? `${l.name}\n`
+                : l.name
+            )}
+          </DataValue>
+        </>
+      )}
+      {result.release_date && (
+        <>
+          <DataName>Release Date</DataName>
+          <DataValue>{formatDate(result.release_date)}</DataValue>
         </>
       )}
     </Data>

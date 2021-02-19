@@ -34,10 +34,19 @@ const Overview = styled.Text`
   margin-top: 5px;
 `;
 
-const Horizontal = ({ id, title, releaseDate, votes, poster, overview }) => {
+const Horizontal = ({
+  isTv = false,
+  id,
+  title,
+  releaseDate,
+  votes,
+  poster,
+  overview,
+}) => {
   const navigation = useNavigation();
   const goToDetail = () => {
     navigation.navigate("Detail", {
+      isTv,
       id,
       title,
       poster,
@@ -55,7 +64,7 @@ const Horizontal = ({ id, title, releaseDate, votes, poster, overview }) => {
         <Poster url={poster} />
         <Data>
           <Title>{trimText(title, 28)}</Title>
-          {releaseDate !== "" ? (
+          {!isTv ? (
             <ReleaseDate>{formatDate(releaseDate)}</ReleaseDate>
           ) : (
             votes > 0 && <Votes votes={votes} />
