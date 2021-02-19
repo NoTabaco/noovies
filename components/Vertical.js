@@ -23,6 +23,7 @@ const Vertical = ({ id, poster, title, votes }) => {
   const goToDetail = () => {
     navigation.navigate("Detail", {
       id,
+      poster,
       title,
       votes,
     });

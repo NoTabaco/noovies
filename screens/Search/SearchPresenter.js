@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 import ScrollContainer from "../../components/ScrollContainer";
 import Input from "../../components/Search/Input";
 import HorizontalSlider from "../../components/HorizontalSlider";

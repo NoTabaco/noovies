@@ -43,6 +43,7 @@ const Horizontal = ({ id, title, releaseDate, votes, poster, overview }) => {
       poster,
       overview,
       releaseDate,
+      votes,
     });
   };
   return (
@@ -54,10 +55,10 @@ const Horizontal = ({ id, title, releaseDate, votes, poster, overview }) => {
         <Poster url={poster} />
         <Data>
           <Title>{trimText(title, 28)}</Title>
-          {releaseDate ? (
+          {releaseDate !== "" ? (
             <ReleaseDate>{formatDate(releaseDate)}</ReleaseDate>
           ) : (
-            <Votes votes={votes} />
+            votes > 0 && <Votes votes={votes} />
           )}
           <Overview>{trimText(overview, 100)}</Overview>
         </Data>
