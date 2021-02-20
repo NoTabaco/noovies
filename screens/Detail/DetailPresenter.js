@@ -1,12 +1,11 @@
 import React from "react";
-import { ActivityIndicator, Dimensions, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Dimensions, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import ScrollContainer from "../../components/ScrollContainer";
 import Poster from "../../components/Poster";
 import Votes from "../../components/Votes";
+import Link from "../../components/Detail/Link";
 import { apiImage } from "../../api";
 import { formatDate } from "../../utils";
-import Link from "../../components/Detail/Link";
 
 const BG = styled.Image`
   width: 100%;
@@ -59,9 +58,11 @@ const DataValue = styled.Text`
 `;
 
 export default ({ openBrowser, result, loading }) => (
-  <ScrollContainer
-    loading={false}
-    contentContainerStyle={{ paddingBottom: 55 }}
+  <ScrollView
+    style={{ backgroundColor: "black" }}
+    contentContainerStyle={{
+      paddingBottom: 80,
+    }}
   >
     <Header>
       <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
@@ -165,5 +166,5 @@ export default ({ openBrowser, result, loading }) => (
         </>
       ) : null}
     </Data>
-  </ScrollContainer>
+  </ScrollView>
 );
