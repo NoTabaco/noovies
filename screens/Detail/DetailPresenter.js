@@ -1,11 +1,12 @@
 import React from "react";
-import { ActivityIndicator, Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import ScrollContainer from "../../components/ScrollContainer";
 import Poster from "../../components/Poster";
 import Votes from "../../components/Votes";
 import { apiImage } from "../../api";
 import { formatDate } from "../../utils";
+import Link from "../../components/Detail/Link";
 
 const BG = styled.Image`
   width: 100%;
@@ -57,10 +58,10 @@ const DataValue = styled.Text`
   font-weight: 500;
 `;
 
-export default ({ result, loading }) => (
+export default ({ openBrowser, result, loading }) => (
   <ScrollContainer
     loading={false}
-    contentContainerStyle={{ paddingBottom: 80 }}
+    contentContainerStyle={{ paddingBottom: 55 }}
   >
     <Header>
       <BG source={{ uri: apiImage(result.backgroundImage, "-") }} />
@@ -134,6 +135,33 @@ export default ({ result, loading }) => (
           <DataValue>
             {result.number_of_seasons} / {result.number_of_episodes}
           </DataValue>
+        </>
+      ) : null}
+      {result.imdb_id ? (
+        <>
+          <DataName>Links</DataName>
+          <Link
+            text={"IMDB Page"}
+            icon={"imdb"}
+            onPress={() =>
+              openBrowser(`https://www.imdb.com/title/${result.imdb_id}`)
+            }
+          />
+        </>
+      ) : null}
+      {result.videos.results.length > 0 ? (
+        <>
+          <DataName>Videos</DataName>
+          {result.videos.results.map((video) => (
+            <Link
+              text={video.name}
+              key={video.id}
+              icon={"youtube-play"}
+              onPress={() =>
+                openBrowser(`https://www.youtube.com/watch?v=${video.key}`)
+              }
+            />
+          ))}
         </>
       ) : null}
     </Data>
